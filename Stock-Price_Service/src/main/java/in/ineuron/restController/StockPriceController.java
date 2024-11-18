@@ -25,5 +25,12 @@ public class StockPriceController {
 		System.out.println(companyName + "  " +stockPrice);
 		return new ResponseEntity<Double>(stockPrice,HttpStatus.OK);
 	}
+	
+	@PostMapping("/addStock/{companyName}/{stockPrice}")
+	public ResponseEntity<String> addStock(@PathVariable String companyName,@PathVariable Double stockPrice){
+		String result = service.addCompanyStock(companyName, stockPrice);
+		System.out.println(result);
+		return new ResponseEntity<String>(result,HttpStatus.OK); 
+	}
 
 }

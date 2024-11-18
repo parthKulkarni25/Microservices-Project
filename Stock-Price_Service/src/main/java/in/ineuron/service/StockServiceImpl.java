@@ -25,4 +25,17 @@ public class StockServiceImpl implements IStockService {
 		return stockPrice.getCompanyPrice();
 	}
 
+	@Override
+	public String addCompanyStock(String companyName, Double companyPrice) {
+		StockPrice stockPrice = new StockPrice();
+		stockPrice.setCompanyName(companyName);
+		stockPrice.setCompanyPrice(companyPrice);
+		
+		stockPrice =dao.save(stockPrice);
+		if(stockPrice !=null)
+			return "Stock Added Successfully";
+		else
+			return "Failed to Add stock.";
+	}
+
 }
