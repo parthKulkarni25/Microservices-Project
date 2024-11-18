@@ -20,4 +20,21 @@ public class StockService {
 		}	
 		return response;
 	}
+	
+	public String addStock(String companyName,Double stockPrice) {
+		String response = null;
+		WebClient webClient = WebClient.create();
+		String REST_END_POINT = "http://localhost:2222/api/price/addStock/{companyName}/{stockPrice}";
+		try {
+			response = webClient.post().uri(REST_END_POINT,companyName,stockPrice)
+					.retrieve()
+					.bodyToMono(String.class)
+					.block();
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = "Not Able to Add";
+		}
+		
+		return response;
+	}
 }

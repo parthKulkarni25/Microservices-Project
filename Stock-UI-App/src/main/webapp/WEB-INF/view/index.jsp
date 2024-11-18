@@ -49,8 +49,11 @@
         </div>
         <button type="submit" class="btn btn-success">Get Price</button>
         <div class="result mt-3">
-            Price is: ${msg }
+            ${msg }
         </div>
+    </form>
+    <form class="mx-auto mt-4" method="post" action="addStock">
+    	<button type="submit" class="btn btn-success">Add Stock</button>
     </form>
 
     <!-- Bootstrap JS and Popper.js -->
