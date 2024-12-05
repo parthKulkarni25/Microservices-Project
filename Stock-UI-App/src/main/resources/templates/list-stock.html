@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .table-wrapper {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-home {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center text-primary">Listed Stocks</h3>
+        <div class="table-wrapper">
+            <table class="table table-striped table-bordered text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Price</th>
+						<th scope="col">Edit Stock Price</th>
+                        <th scope="col">View Stock Details</th>		
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="stock : ${listStocks}">
+                        <td th:text="${stock.companyName}"></td>
+                        <td th:text="${stock.companyPrice}"></td>
+						<td>
+							<a th:href="@{/view/editStockPrice(stockId=${stock.stockId})}" 
+							   class="btn btn-sm btn-primary">
+								Edit
+							</a>
+						</td>
+                        <td>
+                            <a th:href="@{/view/viewStockFundamentals(stockId=${stock.stockId})}" 
+                               class="btn btn-sm btn-primary" 
+                               th:aria-label="|'Edit Stock Price for ' + ${stock.companyName}|">
+                                View
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button" class="btn btn-success btn-home" 
+                th:onclick="'window.location.href=\'/view/home\''" 
+                aria-label="Go to Home Page">
+            Home
+        </button>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
