@@ -134,4 +134,8 @@ public class StockUIController {
 		return "index";
 	}
 	
+	public String dummyChange() {
+		return null;
+	}
+	
 }
