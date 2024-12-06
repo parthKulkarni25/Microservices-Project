@@ -133,4 +133,5 @@ public class StockUIController {
 		model.addAttribute("msg", msg);
 		return "index";
 	}
+	
 }

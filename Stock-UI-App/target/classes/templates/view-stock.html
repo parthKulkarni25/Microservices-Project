@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Fundamentals</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .section-wrapper {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #4CAF50;
+            display: inline-block;
+        }
+        .btn-home {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+        }
+        .details p strong {
+            color: #4CAF50;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #f9f9f9;
+            margin: 0.5rem 0;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	    <a class="navbar-brand" href="#">Stock Manager</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+	            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNav">
+	        <ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+				        <button type="button" class="btn btn-success btn-sm nav-link" 
+				                th:onclick="'window.location.href=\'/view/home\''" 
+				                 aria-label="Go to Home Page">
+				                 Home
+				        </button>
+				  </li>
+	            <li class="nav-item">
+	                <form th:action="@{/view/listStock}" method="post" style="display:inline;">
+	                    <button type="submit" class="btn btn-sm btn-primary nav-link">Listed Stocks</button>
+	                </form>
+	            </li>
+	        </ul>
+	    </div>
+	</nav>
+    <!-- Main Content -->
+    <div class="container">
+        <h3 class="text-center text-primary mb-4">Stock Fundamentals Details</h3>
+        
+        <!-- Company Overview -->
+        <div class="section-wrapper">
+            <h4 class="section-title">Company Overview</h4>
+            <p><strong>Company Name:</strong> <span th:text="${fundamentals.stockPrice.companyName}"></span></p>
+            <p><strong>Company CEO:</strong> <span th:text="${fundamentals.companyCEO}"></span></p>
+            <p><strong>Market Cap:</strong> <span th:text="${fundamentals.marketCap}"></span></p>
+            <p><strong>P/E Ratio:</strong> <span th:text="${fundamentals.peRatio}"></span></p>
+            <p><strong>P/B Ratio:</strong> <span th:text="${fundamentals.pbRatio}"></span></p>
+        </div>
+
+        <!-- Revenue -->
+        <div class="section-wrapper">
+            <h4 class="section-title">Revenue (Yearly)</h4>
+            <ul>
+                <li th:each="entry : ${fundamentals.revenue}">
+                    Year: <span th:text="${entry.key}"></span> - Revenue: <span th:text="${entry.value}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Profit -->
+        <div class="section-wrapper">
+            <h4 class="section-title">Profit (Yearly)</h4>
+            <ul>
+                <li th:each="entry : ${fundamentals.profit}">
+                    Year: <span th:text="${entry.key}"></span> - Profit: <span th:text="${entry.value}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Net Worth -->
+        <div class="section-wrapper">
+            <h4 class="section-title">Net Worth (Yearly)</h4>
+            <ul>
+                <li th:each="entry : ${fundamentals.netWorth}">
+                    Year: <span th:text="${entry.key}"></span> - Net Worth: <span th:text="${entry.value}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-success btn-home" 
+                    th:onclick="'window.location.href=\'/view/home\''" 
+                    aria-label="Go to Home Page">
+                Home
+            </button>
+            <form th:action="@{/view/listStock}" method="post" class="ml-2">
+                <button type="submit" class="btn btn-info">Listed Stocks</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Stock Fundamentals © 2024</p>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
