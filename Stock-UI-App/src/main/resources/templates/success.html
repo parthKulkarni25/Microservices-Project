@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #28a745;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${msg}">Success Message Here</h1>
+    <p>You will be redirected in to Login <span id="countdown">10</span> seconds...</p>
+
+    <!-- JavaScript for Countdown and Redirection -->
+    <script>
+        let countdownElement = document.getElementById("countdown");
+        let timeLeft = 10; // Countdown duration in seconds
+
+        // Update the countdown every second
+        let countdownInterval = setInterval(function () {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+
+            // When countdown reaches 0, redirect
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval); // Stop the countdown
+                window.location.href = "/user/showLogin"; // Redirect to login page
+            }
+        }, 1000); // 1000 milliseconds = 1 second
+    </script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
