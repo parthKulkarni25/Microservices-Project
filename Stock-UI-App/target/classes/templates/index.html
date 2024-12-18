@@ -35,27 +35,42 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Stock Manager</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <form th:action="@{/view/addStock}" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-link nav-link">Add Stock</button>
-                    </form>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{/view/listStock}" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-link nav-link">Listed Stocks</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	    <div class="container-fluid d-flex justify-content-between align-items-center">
+	        <!-- Left: User Profile -->
+	        <div>
+	            <a class="navbar-brand" href="#">
+	                <span>User Name</span>
+	            </a>
+	        </div>
+	        
+	        <!-- Center: Stock Manager -->
+	        <div class="mx-auto text-center">
+	            <a class="navbar-brand" href="#">Stock Manager</a>
+	        </div>
+	        
+	        <!-- Right: Menu Items -->
+	        <div class="d-flex">
+	            <ul class="navbar-nav ml-auto">
+	                <li class="nav-item">
+	                    <form th:action="@{/view/addStock}" method="post" style="display:inline;">
+	                        <button type="submit" class="btn btn-link nav-link">Add Stock</button>
+	                    </form>
+	                </li>
+	                <li class="nav-item">
+	                    <form th:action="@{/view/listStock}" method="post" style="display:inline;">
+	                        <button type="submit" class="btn btn-link nav-link">Listed Stocks</button>
+	                    </form>
+	                </li>
+					<li class="nav-item">
+						<form th:action="@{/signout}" method="get" class="mr-2">
+							<button type="submit" class="btn btn-link text-danger">Logout</button>
+						</form> 
+					</li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
 
     <!-- Main Content -->
     <div class="container">
@@ -86,6 +101,11 @@
                 <button type="submit" class="btn btn-info">Listed Stocks</button>
             </form>
         </div>
+		<div class="d-flex justify-content-center mt-4">
+		       <form th:action="@{/signout}" method="get" class="mr-2">
+		           <button type="submit" class="btn btn-primary">Logout</button>
+		       </form>          
+		  </div>
     </div>
 
     <!-- Bootstrap JS and Popper.js -->
